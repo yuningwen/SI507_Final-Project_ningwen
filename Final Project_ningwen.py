@@ -9,6 +9,7 @@ def main():
     #base_url = https://api.yelp.com/v3/businesses/search
     print('')
     print('')
+    print('')
     '''
     Client ID
     R7wo-Wg0yj0VWC11sNuuiw
