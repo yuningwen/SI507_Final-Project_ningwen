@@ -10,6 +10,7 @@ def main():
     print('')
     print('')
     print('')
+    print('1')
     '''
     Client ID
     R7wo-Wg0yj0VWC11sNuuiw
@@ -57,6 +58,22 @@ def main():
             continue
         else:
             break
+    def draw(parent_name, child_name):
+        edge = pydot.Edge(parent_name, child_name)
+        graph.add_edge(edge)
+
+    def visit(node, parent=None):
+        for k,v in node.items():
+            if isinstance(v, dict):
+                # We start with the root node whose parent is None
+                # we don't want to graph the None node
+                if parent:
+                    draw(parent, k)
+                visit(v, k)
+            else:
+                draw(parent, k)
+                # drawing the label using a distinct name
+                draw(k, k+'_'+v)
     the_tree_dic = construct_the_tree(f'data_term={term}_radius={radius}_price={price}_rating={rating}_and_review_count={review_count}.json', term)
     graph = pydot.Dot(graph_type='graph')
     visit(the_tree_dic)
@@ -136,7 +153,7 @@ def construct_the_tree(json_file, term):
     dic[term]['restaurant_reservation'] = transaction_method3_dic
     f.close()
     return dic
-
+'''
 def draw(parent_name, child_name):
     edge = pydot.Edge(parent_name, child_name)
     graph.add_edge(edge)
@@ -153,6 +170,7 @@ def visit(node, parent=None):
             draw(parent, k)
             # drawing the label using a distinct name
             draw(k, k+'_'+v)
+'''
 
 '''
 menu = {'dinner':
